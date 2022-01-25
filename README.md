@@ -13,3 +13,6 @@ A personal helper bot that will let me know when to open and shut the windows in
 
 ## Set Up
 
+`source venv/bin/activate`
+
+
