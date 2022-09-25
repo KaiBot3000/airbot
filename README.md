@@ -13,6 +13,9 @@ A personal helper bot that will let me know when to open and shut the windows in
 
 ## Set Up
 
-`source venv/bin/activate`
-
-
+```
+$ source venv/bin/activate
+$ export FLASK_APP=airBot.py
+$ export FLASK_ENV=development
+$ flask run
+```
