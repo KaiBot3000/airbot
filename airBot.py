@@ -18,7 +18,30 @@ def hey():
 def get_location_status():
     lat = dummyDB.lat
     lon = dummyDB.lon
-    # response = requests.get(base_url+'?lat='+lat+'&lon='+lon'&appid='+api_key)
-    response = requests.get('http://echo.jsontest.com/key/value/one/two')
+    # response = requests.get(base_url+'?lat='+lat+'&lon='+lon+'&appid='+api_key)
+    response = {
+        coord: {
+            lat: 42.1912,
+            lon: -123.2684
+            },
+        list: [
+            {
+            components: {
+                co: 168.56,
+                nh3: 1.52,
+                no: 0.04,
+                no2: 1.91,
+                o3: 63.66,
+                pm10: 4.7,
+                pm2_5: 3.58,
+                so2: 0.12
+                },
+                dt: 1664070992,
+                main: {
+                aqi: 1
+                }
+            }
+        ]
+    }
     return response.json()
 
