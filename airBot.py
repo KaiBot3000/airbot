@@ -1,13 +1,14 @@
 from flask import Flask
+import sqlalchemy
 import requests
+import psycopg2
 import json
 
 import config
-import dummyDB
 
 app = Flask(__name__)
 
-base_url = 'http://api.openweathermap.org/data/2.5/air_pollution'
+base_url = "http://api.openweathermap.org/data/2.5/air_pollution"
 api_key = config.api_key
 
 @app.route("/")
@@ -43,5 +44,19 @@ def get_location_status():
             }
         ]
     }
-    return response.json()
+    # return response.json()
+    return response
 
+
+def update_data():
+    # get current status
+    # update db
+    return 0
+
+def check_aqi():
+    # get current aqi from db
+    # get current alert stat
+    return 0
+
+if __name__ == "__main__":
+    app.run(debug=True)
