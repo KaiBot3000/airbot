@@ -13,7 +13,7 @@ class User(db.Model):
     user_name = db.Column(db.String(20), unique=True, nullable=False)
     user_password = db.Column(db.String, nullable=False)
     user_email = db.Column(db.String(40), nullable=False)
-    user_phone = db.Column(db.Integer(11), nullable=False)
+    user_phone = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         """What to show when user object printed"""
@@ -31,8 +31,8 @@ class Location(db.Model):
     location_name = db.Column(db.String(20), nullable=False)
     location_lat = db.Column(db.Integer, nullable=False)
     location_lon = db.Column(db.Integer, nullable=False)
-    location_upper = db.Column(db.Integer(10), nullable=False)
-    location_lower = db.Column(db.Integer(10), nullable=False)
+    location_upper = db.Column(db.Integer, nullable=False)
+    location_lower = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         """What to show when location object printed"""
@@ -47,7 +47,7 @@ class Reading(db.Model):
 
     reading_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     reading_location = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
-    reading_time = db.Column(db.Datetime, nullable=False)
+    reading_time = db.Column(db.DateTime, nullable=False)
     reading_aqi = db.Column(db.Integer, nullable=False)
 
 
