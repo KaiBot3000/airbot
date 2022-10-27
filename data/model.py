@@ -28,7 +28,7 @@ class Location(db.Model):
 
     location_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     location_user = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    location_name = db.Column(db.String(20), unique=False, nullable=False)
+    location_name = db.Column(db.String(20), nullable=False)
     location_lat = db.Column(db.Integer, nullable=False)
     location_lon = db.Column(db.Integer, nullable=False)
     location_upper = db.Column(db.Integer(10), nullable=False)
@@ -47,7 +47,7 @@ class Reading(db.Model):
 
     reading_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     reading_location = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
-    reading_time = db.Column()
+    reading_time = db.Column(db.Datetime, nullable=False)
     reading_aqi = db.Column(db.Integer, nullable=False)
 
 
