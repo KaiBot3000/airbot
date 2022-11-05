@@ -1,15 +1,20 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 import requests
 import psycopg2
 import json
+import os
 
 import config
 
 app = Flask(__name__)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_URI
+db = SQLAlchemy(app)
+
 base_url = "http://api.openweathermap.org/data/2.5/air_pollution"
-api_key = config.api_key
+api_key = config.API_KEY
 
 @app.route("/")
 def hey():
@@ -59,4 +64,6 @@ def check_aqi():
     return 0
 
 if __name__ == "__main__":
+
+    connect_to_db(app)
     app.run(debug=True)

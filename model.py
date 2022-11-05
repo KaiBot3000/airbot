@@ -1,7 +1,10 @@
 """Models and database functions for Airbot"""
 
 from flask_sqlalchemy import SQLAlchemy
+import config
 
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_URI
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -60,13 +63,13 @@ class Reading(db.Model):
 def connect_to_db(app):
     """Connects the db to flask app"""
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres@localhost:5432/airbot_db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI
     db.app = app
     db.init_app(app)
 
 
 if __name__ == "__main__":
 
-    from airbot import app
+    from airBot import app
     connect_to_db(app)
     print("Connected to DB.")
