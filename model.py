@@ -1,7 +1,6 @@
 """Models and database functions for Airbot"""
 
 from flask_sqlalchemy import SQLAlchemy
-import config
 
 db = SQLAlchemy()
 
@@ -19,7 +18,7 @@ class User(db.Model):
     def __repr__(self):
         """What to show when user object printed"""
 
-        return "<User id:%s, username: %s>" % (self.user_id, self.user_name)
+        return "<User id:%s, username: %s>" % (self.id, self.name)
 
     def __init__(self, name, password, email, phone):
         self.name = name
@@ -34,7 +33,7 @@ class Location(db.Model):
     __tablename__ = "locations"
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable=False)
     lat = db.Column(db.Integer, nullable=False)
     lon = db.Column(db.Integer, nullable=False)
@@ -53,7 +52,7 @@ class Reading(db.Model):
     __tablename__ = "readings"
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    location = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
+    location = db.Column(db.Integer, db.ForeignKey('locations.id'))
     time = db.Column(db.DateTime, nullable=False)
     aqi = db.Column(db.Integer, nullable=False)
 
