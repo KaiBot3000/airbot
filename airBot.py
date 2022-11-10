@@ -19,12 +19,14 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-    db.session.add(User('admin', 'demo', 'fake@fake.com', '2223334444'))
-    db.session.commit()
+    # db.session.add(User('admin', 'demo', 'fake@fake.com', '2223334444'))
+    # db.session.commit()
 
-    users = User.query.all()
-    print('created tables and added users')
-    print(users)
+    # users = User.query.all()
+    # print('created tables and added users')
+    # print(users)
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+        app.run(debug=True)
