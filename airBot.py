@@ -120,23 +120,23 @@ class User(db.Model):
     def __repr__(self):
         """What to show when user object printed"""
 
-        return "<User id:%s, username: %s>" % (self.user_id, self.user_name)
+        return "<User id:%s, username: %s>" % (self.id, self.name)
 
     def __init__(self, name, password, email, phone):
-        self.user_name = name
-        self.user_password = password
-        self.user_email = email
-        self.user_phone = phone
+        self.name = name
+        self.password = password
+        self.email = email
+        self.phone = phone
 
 with app.app_context():
     db.create_all()
 
-# db.session.add(User('admin', 'demo', 'fake@fake.com', 2223334444))
-# db.session.commit()
+db.session.add(User('admin', 'demo', 'fake@fake.com', 2))
+db.session.commit()
 
-# users = User.query.all()
-# print('created tables and added users')
-# print(users)
+users = User.query.all()
+print('created tables and added users')
+print(users)
 
 # if __name__ == "__main__":
 
