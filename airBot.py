@@ -16,23 +16,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_URI
 
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
-
-    # db.session.add(User('admin', 'demo', 'fake@fake.com', '2223334444'))
-    # db.session.commit()
-
-    # users = User.query.all()
-    # print('created tables and added users')
-    # print(users)
-
 base_url = "http://api.openweathermap.org/data/2.5/air_pollution"
 api_key = config.API_KEY
 
 @app.route("/")
 def hey():
     users = User.query.all()
-    return "<p> Hey there! Current top user: %s </p>" % users[0].name
+    return "<p> Hey there! </p>"
 
 @app.route("/status/")
 def get_location_status():
@@ -76,6 +66,7 @@ def check_aqi():
     # get current aqi from db
     # get current alert stat
     return 0
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

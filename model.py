@@ -35,8 +35,8 @@ class Location(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable=False)
-    lat = db.Column(db.Integer, nullable=False)
-    lon = db.Column(db.Integer, nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lon = db.Column(db.Float, nullable=False)
     upper = db.Column(db.Integer, nullable=False)
     lower = db.Column(db.Integer, nullable=False)
 
@@ -60,4 +60,4 @@ class Reading(db.Model):
     def __repr__(self):
         """What to show when reading object printed"""
 
-        return "<reading id:%s, time: %s, AQI: %s>" % (self.id, self.time, self.reading_aqi)
+        return "<reading id:%s, time: %s, AQI: %s>" % (self.id, self.time, self.aqi)
