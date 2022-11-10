@@ -23,6 +23,12 @@ class User(db.Model):
 
         return "<User id:%s, username: %s>" % (self.user_id, self.user_name)
 
+    def __init__(self, name, password, email, phone):
+        self.user_name = name
+        self.user_password = password
+        self.user_email = email
+        self.user_phone = phone
+
 
 class Location(db.Model):
     """Airbot user locations"""
