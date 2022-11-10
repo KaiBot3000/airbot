@@ -109,13 +109,11 @@ db = SQLAlchemy(app)
 class User(db.Model):
     __tablename__ = "users"
 
-    # id = db.Column(db.Integer, primary_key=True)
-    # name = db.Column(db.String, nullable=False, unique=True)
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    name = db.Column(db.String(20), unique=True, nullable=False)
+    name = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    email = db.Column(db.String(40), nullable=False)
-    phone = db.Column(db.Integer, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    phone = db.Column(db.String, nullable=False)
 
     def __repr__(self):
         """What to show when user object printed"""
@@ -131,7 +129,7 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-db.session.add(User('admin', 'demo', 'fake@fake.com', 2))
+db.session.add(User('admin', 'demo', 'fake@fake.com', '2223334444'))
 db.session.commit()
 
 users = User.query.all()
