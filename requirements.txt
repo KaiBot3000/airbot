@@ -9,7 +9,10 @@ itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
 psycopg2==2.9.3
+PyJWT==2.6.0
+pytz==2022.6
 requests==2.26.0
 SQLAlchemy==1.4.41
+twilio==7.15.2
 urllib3==1.26.6
 Werkzeug==2.0.1

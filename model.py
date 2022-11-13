@@ -1,6 +1,7 @@
 """Models and database functions for Airbot"""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -35,8 +36,8 @@ class Location(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable=False)
-    lat = db.Column(db.Integer, nullable=False)
-    lon = db.Column(db.Integer, nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lon = db.Column(db.Float, nullable=False)
     upper = db.Column(db.Integer, nullable=False)
     lower = db.Column(db.Integer, nullable=False)
 
@@ -53,11 +54,12 @@ class Reading(db.Model):
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     location = db.Column(db.Integer, db.ForeignKey('locations.id'))
-    time = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    # time = db.Column(db.TIMESTAMP, nullable=False)
     aqi = db.Column(db.Integer, nullable=False)
 
 
     def __repr__(self):
         """What to show when reading object printed"""
 
-        return "<reading id:%s, time: %s, AQI: %s>" % (self.id, self.time, self.reading_aqi)
+        return "<reading id:%s, time: %s, AQI: %s>" % (self.id, self.time, self.aqi)
