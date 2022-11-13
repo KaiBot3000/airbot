@@ -1,9 +1,11 @@
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from twilio.rest import Client
+from twilio.twiml.messaging_response import MessagingResponse
 import sqlalchemy
 import requests
 import psycopg2
+import twilio
 import json
 import os
 
@@ -24,14 +26,48 @@ twilio_token = config.TWILIO_AUTH_TOKEN
 twilio_phone = config.TWILIO_PHONE
 to_phone = config.TO_PHONE
 
-client = Client(twilio_sid, twilio_token)
 
-message = client.messages.create(
-    to=to_phone,
-    from_=twilio_phone,
-    body="Hello from Python!")
+def sendText(content):
+    client = Client(twilio_sid, twilio_token)
 
-print(message.sid)
+    # message = client.messages.create(
+    #     to=to_phone,
+    #     from_=twilio_phone,
+    #     body=content)
+
+    # print(message.sid)
+
+    # FOR TESTING ONLY
+    print(f"fake sending {content}")
+
+@app.route("/ping", methods=['GET', 'POST'])
+def pong():
+    return("pong\n")
+
+# receive a message
+
+@app.route("/sms", methods=['GET', 'POST'])
+def sort_sms():
+    """Parse and route incoming sms."""
+
+    body = request.values.get('Body', None)
+    if body == "status":
+        reply = getStatus(request)
+    else:
+        reply = "I don't understand! Try one of these: ['status']"
+    resp = MessagingResponse()
+    resp.message = reply
+    # return str(resp)
+    ## FOR TESTING ONLY
+    return(reply)
+
+def getStatus(sms):
+    # get phone number from sms
+    # get location from db
+    # get most recent aqi
+    # return status
+    print('got status')
+    return("aqi is 10")
 
 
 
@@ -92,7 +128,7 @@ print(message.sid)
 #     # get current alert stat
 #     return 0
 
-# if __name__ == "__main__":
-#     with app.app_context():
-#         db.create_all()
-#         app.run(debug=True)
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+        app.run(debug=True)
