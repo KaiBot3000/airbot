@@ -66,7 +66,6 @@ def getStatus(sms):
     # get location from db
     # get most recent aqi
     # return status
-    print('got status')
     return("aqi is 10")
 
 

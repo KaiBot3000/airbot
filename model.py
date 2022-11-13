@@ -1,6 +1,7 @@
 """Models and database functions for Airbot"""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -53,7 +54,8 @@ class Reading(db.Model):
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     location = db.Column(db.Integer, db.ForeignKey('locations.id'))
-    time = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    # time = db.Column(db.TIMESTAMP, nullable=False)
     aqi = db.Column(db.Integer, nullable=False)
 
 
